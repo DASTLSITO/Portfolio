@@ -1,0 +1,38 @@
+:host {
+  --_bg: var(--topo-bg, var(--bg-main, #0a0a0a));
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  /* Read by the component as the contour line colour. */
+  color: var(--topo-line-color, var(--text-main, #f0f0f0));
+}
+
+.topo__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * Soft veil: darkens the area behind centred copy for legibility and lets
+ * the terrain settle into the page at the bottom edge. Override with --topo-veil.
+ */
+.topo__veil {
+  position: absolute;
+  inset: 0;
+  background: var(
+    --topo-veil,
+    radial-gradient(
+        ellipse 42% 34% at 50% 50%,
+        color-mix(in srgb, var(--_bg) 78%, transparent) 0%,
+        color-mix(in srgb, var(--_bg) 40%, transparent) 55%,
+        transparent 100%
+      ),
+      linear-gradient(to bottom, transparent 78%, var(--_bg) 100%)
+  );
+}

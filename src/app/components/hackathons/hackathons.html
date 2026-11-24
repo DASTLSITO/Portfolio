@@ -1,0 +1,39 @@
+<section class="hackathons">
+  <header class="hackathons__intro">
+    <h2 class="hackathons__heading">Hackathons</h2>
+    <p class="hackathons__role">Backend, AI Integration & Mobile Developer</p>
+    <p class="hackathons__period">Local & Regional Hackathons · Apr 2025 — Oct 2026</p>
+    <p class="hackathons__summary">
+      Collaborated with the same multidisciplinary team across four hackathons, developing
+      AI-powered prototypes under tight deadlines.
+    </p>
+    <div class="hackathons__tags">
+      @for (tech of technologies; track tech) {
+        <span class="tag tag--tech">{{ tech }}</span>
+      }
+    </div>
+  </header>
+
+  <ol class="timeline">
+    @for (event of events; track event.date) {
+      <li class="timeline__item" [class.timeline__item--latest]="$last">
+        <article class="event">
+          <div class="event__meta">
+            <time class="event__date">{{ event.date }}</time>
+            <span class="event__scope" [class.event__scope--regional]="event.scope === 'Regional'">
+              {{ event.scope }}
+            </span>
+          </div>
+          <h3 class="event__title">{{ event.title }}</h3>
+          <p class="event__location">{{ event.location }}, México</p>
+          <p class="event__description">{{ event.description }}</p>
+          <div class="hackathons__tags">
+            @for (tag of event.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </article>
+      </li>
+    }
+  </ol>
+</section>

@@ -1,0 +1,90 @@
+:host {
+  min-height: 120px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialmedia__container {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.socialmedia__item {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.8em 1.6em;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.socialmedia__item:hover {
+  transform: translateY(-2px);
+}
+
+/* Main call to action: solid lavender with dark text for strong contrast. */
+.socialmedia__item--primary {
+  color: var(--bg-main);
+  background-color: var(--color-main);
+}
+
+.socialmedia__item--primary:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0 8px 24px -8px var(--glow-main);
+}
+
+/* Secondary action: outlined, picks up the lavender on hover. */
+.socialmedia__item--ghost {
+  color: var(--text-main);
+  background-color: color-mix(in srgb, var(--bg-main) 60%, transparent);
+  border-color: var(--border-strong);
+}
+
+.socialmedia__item--ghost:hover {
+  color: var(--color-main);
+  background-color: var(--tint-main);
+  border-color: var(--color-main);
+}
+
+/* Download: pink outline so it reads as its own action, not another profile link. */
+.socialmedia__item--accent {
+  color: var(--color-secondary);
+  background-color: color-mix(in srgb, var(--bg-main) 60%, transparent);
+  border-color: color-mix(in srgb, var(--color-secondary) 45%, transparent);
+}
+
+.socialmedia__item--accent:hover {
+  background-color: color-mix(in srgb, var(--color-secondary) 12%, transparent);
+  border-color: var(--color-secondary);
+}
+
+.socialmedia__icon {
+  width: 1.1em;
+  height: 1.1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+.socialmedia__item--accent:hover .socialmedia__icon {
+  transform: translateY(2px);
+}

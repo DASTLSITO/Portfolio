@@ -1,0 +1,119 @@
+/* Mobile first: 100vh section; top padding clears the fixed header. */
+:host {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1rem 2.5rem;
+}
+
+.stack {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stack__heading {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.stack__groups {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.stack__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stack__group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.stack__label {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-main);
+}
+
+.stack__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech__item {
+  display: block;
+  height: 22px;
+  max-width: 100%;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+/* Tablet: same list as mobile, with more room. */
+@media (min-width: 640px) {
+  :host {
+    padding-inline: 2rem;
+  }
+
+  .tech__item {
+    height: 24px;
+  }
+}
+
+/* Desktop: the original layout — centred heading, one centred column of
+   groups separated by thin lines, larger badges that lift on hover. */
+@media (min-width: 1024px) {
+  .stack {
+    max-width: 850px;
+  }
+
+  .stack__heading {
+    text-align: center;
+  }
+
+  .stack__groups {
+    gap: 0;
+  }
+
+  .stack__group,
+  .stack__group:last-child {
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stack__label {
+    font-size: 1.17rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--text-main);
+  }
+
+  .stack__badges {
+    gap: 0.6rem;
+  }
+
+  .tech__item {
+    height: 27px;
+  }
+
+  .tech__item:hover {
+    transform: translateY(-3px);
+  }
+}

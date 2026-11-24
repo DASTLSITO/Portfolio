@@ -1,0 +1,24 @@
+<header class="header">
+  <div class="brand__container">
+    <a class="brand__name" href="#about" (click)="closeMenu()">Eduardo Álvarez</a>
+  </div>
+
+  <button
+    class="menu-btn"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="openMenu()"
+    aria-controls="site-nav"
+    aria-label="Open menu">
+    {{ openMenu() ? '✕' : '☰' }}
+  </button>
+
+  <nav id="site-nav" class="nav__container" [class.active]="openMenu()" aria-label="Sections">
+    <ul class="nav__list">
+      @for (section of sections; track section.id) {
+        <li class="nav__item">
+          <a class="nav__link" [href]="'#' + section.id" (click)="closeMenu()">{{ section.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+</header>

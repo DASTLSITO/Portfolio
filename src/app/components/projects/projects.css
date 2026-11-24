@@ -1,0 +1,220 @@
+/* Mobile first: 100vh section; top padding clears the fixed header. */
+:host {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1rem 2.5rem;
+}
+
+.projects {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.projects__heading {
+  margin: 0;
+  color: var(--text-main);
+}
+
+/* Mobile: swipeable row of cards so the section fits one screen. */
+.projects__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 88%;
+  gap: 1rem;
+  margin: 0 -1rem;
+  padding: 0 1rem 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Snapped cards keep the page gutter instead of touching the screen edge. */
+  scroll-padding-inline: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.project__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+  padding: 1.2rem;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+
+  /* Dark surface with a faint lavender wash; colour lives in the details. */
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--color-main) 7%, var(--bg-surface)),
+    var(--bg-surface) 60%
+  );
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.project__card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 18px 40px -24px var(--glow-main);
+  transform: translateY(-3px);
+}
+
+.project__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.project__title {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.project__role {
+  margin: 0.35rem 0 0;
+  color: var(--color-main);
+  font-size: 0.85rem;
+}
+
+.project__date {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+/* Status pill: pink while in progress, lavender when done. */
+.project__status {
+  --_tone: var(--color-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--_tone) 40%, transparent);
+  border-radius: 2rem;
+  background: color-mix(in srgb, var(--_tone) 10%, transparent);
+  color: var(--_tone);
+}
+
+.project__status::before {
+  content: '';
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.project__status--completed {
+  --_tone: var(--color-main);
+}
+
+.project__description {
+  margin: 0;
+  color: color-mix(in srgb, var(--text-main) 82%, var(--bg-surface));
+  line-height: 1.6;
+  font-size: 0.85rem;
+}
+
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.tag--category {
+  color: var(--color-secondary);
+  border-color: color-mix(in srgb, var(--color-secondary) 40%, transparent);
+  background: color-mix(in srgb, var(--color-secondary) 8%, transparent);
+}
+
+.project__technologies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.project__technologies h3 {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tag--tech {
+  border-color: transparent;
+  background: var(--tint-main);
+  color: var(--color-main);
+}
+
+/* Tablet: two columns, no scrolling. */
+@media (min-width: 640px) {
+  :host {
+    padding-inline: 2rem;
+  }
+
+  .projects__list {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .project__card {
+    padding: 1.3rem;
+  }
+
+  .project__header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .projects__list {
+    gap: 1.5rem;
+  }
+
+  .project__card {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .project__title {
+    font-size: 1.6rem;
+  }
+
+  .project__description {
+    font-size: 0.9rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+  }
+}

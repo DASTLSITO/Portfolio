@@ -1,0 +1,56 @@
+:host{
+  height: 100vh;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* Contains the topographic background behind the hero copy. */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* Contour lines take the brand lavender instead of plain white. */
+  --topo-line-color: var(--color-main);
+}
+
+.presentation{
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.presentation__content{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1{
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(100deg, var(--text-main) 30%, var(--color-main) 70%, var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h3{
+  margin: 1.25rem 0 0;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+p{
+  margin: 0.75rem 0 0;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}

@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-main: #1A1625;
+  --bg-surface: #262036;
+  --color-main: #CBB7F5;
+  --color-secondary: #F6C5DA;
+  --text-main: #F3EFFA;
+  --text-secondary: #B5ACC8;
+
+  /* Derived tokens: the palette at low intensity, for borders, tints and glows. */
+  --border-subtle: color-mix(in srgb, var(--color-main) 16%, transparent);
+  --border-strong: color-mix(in srgb, var(--color-main) 45%, transparent);
+  --tint-main: color-mix(in srgb, var(--color-main) 10%, transparent);
+  --glow-main: color-mix(in srgb, var(--color-main) 35%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+}
+
+* {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+::selection {
+  background-color: var(--color-main);
+  color: var(--bg-main);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}

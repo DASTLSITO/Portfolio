@@ -1,0 +1,214 @@
+/* 100vh section; top padding clears the fixed header. */
+:host {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1rem 2.5rem;
+}
+
+.hackathons {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hackathons__heading {
+  margin: 0 0 0.75rem;
+  color: var(--text-main);
+}
+
+.hackathons__role {
+  margin: 0;
+  color: var(--color-main);
+  font-size: 0.9rem;
+}
+
+.hackathons__period {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.hackathons__summary {
+  margin: 1rem 0;
+  max-width: 60ch;
+  color: color-mix(in srgb, var(--text-main) 82%, var(--bg-main));
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.hackathons__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.tag--tech {
+  border-color: transparent;
+  background: var(--tint-main);
+  color: var(--color-main);
+}
+
+/* Mobile: swipeable row so the section fits one screen. */
+.timeline {
+  list-style: none;
+  margin: 0 -1rem;
+  padding: 0 1rem 0.75rem;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 85%;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Snapped cards keep the page gutter instead of touching the screen edge. */
+  scroll-padding-inline: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.timeline__item {
+  position: relative;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.timeline::before,
+.timeline__item::before {
+  display: none;
+}
+
+.event {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--color-main) 7%, var(--bg-surface)),
+    var(--bg-surface) 60%
+  );
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.event:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 18px 40px -24px var(--glow-main);
+  transform: translateY(-3px);
+}
+
+.event__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.event__date {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.event__scope {
+  --_tone: var(--color-main);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--_tone) 40%, transparent);
+  border-radius: 2rem;
+  background: color-mix(in srgb, var(--_tone) 10%, transparent);
+  color: var(--_tone);
+}
+
+.event__scope--regional {
+  --_tone: var(--color-secondary);
+}
+
+.event__title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.event__location {
+  margin: 0;
+  color: var(--color-main);
+  font-size: 0.75rem;
+}
+
+.event__description {
+  margin: 0 0 auto;
+  color: color-mix(in srgb, var(--text-main) 82%, var(--bg-surface));
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+/* Tablet: 2×2 grid. */
+@media (min-width: 640px) {
+  :host {
+    padding-inline: 2rem;
+  }
+
+  .timeline {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+/* Desktop: horizontal timeline; latest node in pink. */
+@media (min-width: 1024px) {
+  .timeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-top: 1.75rem;
+  }
+
+  .timeline::before,
+  .timeline__item::before {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  .timeline::before {
+    inset: 0.3rem 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-subtle), var(--border-strong));
+  }
+
+  .timeline__item::before {
+    left: 1.1rem;
+    top: -1.75rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: var(--bg-main);
+    border: 2px solid var(--color-main);
+  }
+
+  .timeline__item--latest::before {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-secondary) 18%, transparent);
+  }
+}
